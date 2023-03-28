@@ -1,7 +1,5 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import * as Permissions from "expo-permissions";
-import * as ImagePicker from "expo-image-picker";
 import { useActionSheet } from "@expo/react-native-action-sheet";
 import { pickImage, takePhoto } from "../../../../utils/mediaUtils";
 
@@ -11,7 +9,6 @@ const CustomActions = ({onSend}: {onSend: () => void}) => {
     const options = [
       "Image from library",
       "Take a picture",
-      "Share location",
       "Cancel",
     ];
     const cancelButtonIndex = options.length - 1;
