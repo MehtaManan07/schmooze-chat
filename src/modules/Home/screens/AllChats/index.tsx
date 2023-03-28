@@ -94,7 +94,7 @@ export default function HomeScreen() {
   }, []);
   useEffect(() => {
     if (focused) {
-      saveChatData({ threads }).then(() => console.log("threads cached"));
+      saveChatData({ threads })
     }
   }, [focused, threads]);
   return (

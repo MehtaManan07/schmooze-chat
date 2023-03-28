@@ -57,7 +57,6 @@ const RoomScreen = () => {
         };
         messages[0].replyMessage = messageWithoutUndefinedText as MyMessage;
       }
-      console.log(messages[0]);
       firestore()
         .collection("THREADS")
         .doc(thread._id)
@@ -230,7 +229,7 @@ const RoomScreen = () => {
               return { ...t, messages };
             }
           });
-          saveChatData(updatedData).then(() => console.log("data saved"));
+          saveChatData(updatedData)
         }
       });
     }

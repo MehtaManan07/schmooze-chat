@@ -41,7 +41,6 @@ export const takePhoto = async (
   }
 };
 export const uploadImage = async (uri: string) => {
-  console.log(uri);
   const filename = uri.substring(uri.lastIndexOf("/") + 1);
   const uploadUri = Platform.OS === "ios" ? uri.replace("file://", "") : uri;
   const task = await storage().ref(filename).putFile(uploadUri);
