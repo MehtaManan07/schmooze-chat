@@ -35,7 +35,13 @@ export default function HomeScreen() {
     if (roomName?.length > 0) {
       fireStore()
         .collection("THREADS")
-        .add({ name: roomName })
+        .add({
+          name: roomName,
+          latestMessage: {
+            text: "This is the beginning of an awesome chat",
+            localTime: new Date(),
+          },
+        })
         .then((data) => {
           data.get().then((doc) => {
             let thread = doc.data();
@@ -47,11 +53,15 @@ export default function HomeScreen() {
             hideModal();
           });
         });
+        setRoomName('')
+    } else {
+      showToastWithGravity('Room Name cannot be empty👀','top')
     }
   };
   useEffect(() => {
     const unsubscribe = fireStore()
       .collection("THREADS")
+      .orderBy("latestMessage.localTime", "desc")
       .onSnapshot(
         (querySnapshot) => {
           const firebaseThreads = querySnapshot.docs.map((documentSnapshot) => {
@@ -94,7 +104,7 @@ export default function HomeScreen() {
   }, []);
   useEffect(() => {
     if (focused) {
-      saveChatData({ threads })
+      saveChatData({ threads });
     }
   }, [focused, threads]);
   return (
