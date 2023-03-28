@@ -17,7 +17,7 @@ import {
   TimeProps,
 } from "react-native-gifted-chat";
 import firestore from "@react-native-firebase/firestore";
-import { View, Text } from "react-native";
+import { View, Text, Image } from "react-native";
 import { Swipeable } from "react-native-gesture-handler";
 import { styles } from "./styles";
 import ReplyMessageBar from "../../../../components/chat/ReplyMessageBar";
@@ -32,6 +32,7 @@ import {
   saveChatData,
 } from "../../../../utils/cacheData";
 import { showToastWithGravity } from "../../../../components/Toast";
+import CustomActions from "./CustomActions";
 type MyMessage = IMessage & {
   replyMessage?: IMessage;
 };
@@ -47,12 +48,16 @@ const RoomScreen = () => {
   const [messages, setMessages] = useState<MyMessage[]>([]);
 
   const clearReplyMessage = () => setReplyMessage(null);
-
   const onSend = useCallback(
     async (messages: MyMessage[] = []) => {
       if (replyMessage) {
-        messages[0].replyMessage = replyMessage;
+        const messageWithoutUndefinedText = {
+          ...replyMessage,
+          text: replyMessage.text !== undefined ? replyMessage.text : null,
+        };
+        messages[0].replyMessage = messageWithoutUndefinedText as MyMessage;
       }
+      console.log(messages[0]);
       firestore()
         .collection("THREADS")
         .doc(thread._id)
@@ -72,7 +77,8 @@ const RoomScreen = () => {
             latestMessage: { ...messages[0], localTime: new Date() },
           },
           { merge: true }
-        );
+        )
+        .catch((err) => console.log("err", err));
     },
     [replyMessage]
   );
@@ -83,7 +89,9 @@ const RoomScreen = () => {
       accessoryStyle={styles.replyBarContainer}
     />
   );
-
+  const renderCustomActions = (props: any) => (
+    <CustomActions onSend={onSend} {...props} />
+  );
   const renderAccessory = () =>
     replyMessage && (
       <ReplyMessageBar message={replyMessage} clearReply={clearReplyMessage} />
@@ -116,7 +124,14 @@ const RoomScreen = () => {
         {props.currentMessage && props.currentMessage.replyMessage && (
           <>
             <View style={styles.replyMessageContainer}>
-              <Text>{props.currentMessage.replyMessage.text}</Text>
+              {props.currentMessage.replyMessage.image ? (
+                <Image
+                  source={{ uri: props.currentMessage.replyMessage.image }}
+                  style={{ height: 40, width: 40 }}
+                />
+              ) : (
+                <Text>{props.currentMessage.replyMessage.text}</Text>
+              )}
               <View style={styles.replyMessageDivider} />
             </View>
           </>
@@ -170,6 +185,7 @@ const RoomScreen = () => {
             return {
               _id: firebaseData._id,
               text: firebaseData.text,
+              ...(firebaseData.image && { image: firebaseData.image }),
               createdAt,
               user: {
                 _id: firebaseData.user._id,
@@ -237,6 +253,7 @@ const RoomScreen = () => {
         renderCustomView={renderReplyMessageView}
         placeholder="Type your message here..."
         alwaysShowSend
+        renderActions={renderCustomActions}
         scrollToBottomComponent={scrollToBottomComponent}
         renderBubble={(props) => {
           return (
