@@ -1,0 +1,22 @@
+import {
+  DarkTheme,
+  DefaultTheme,
+  NavigationContainer,
+} from "@react-navigation/native";
+import { ColorSchemeName } from "react-native";
+import Routes from "./Routes";
+
+export default function Navigation({
+  colorScheme,
+}: {
+  colorScheme: ColorSchemeName;
+}) {
+  return (
+    <NavigationContainer
+      //   linking={LinkingConfiguration}
+      theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
+    >
+      <Routes />
+    </NavigationContainer>
+  );
+}

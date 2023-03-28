@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "334693296627",
+    "project_id": "schmooze-ac150",
+    "storage_bucket": "schmooze-ac150.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:334693296627:android:6c6bc3f59bd0102e820a86",
+        "android_client_info": {
+          "package_name": "com.manan0507.schmoozeee"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "334693296627-o469cdp0rpqc8ben9crpl1p9krcof9t5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.manan0507.schmoozeee",
+            "certificate_hash": "1d24d93d73def89267543d08d32da9d8dabe81fe"
+          }
+        },
+        {
+          "client_id": "334693296627-q1ftrvb7korbb2iqi2uvtcfuv3thj538.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKxsLGwRuO_773Nz0qMNVZyZ0KiiKS4oI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "334693296627-d072gs39jfm7fkep56l78d1tpqnvbqnn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
