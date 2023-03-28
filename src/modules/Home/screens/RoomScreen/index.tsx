@@ -127,7 +127,7 @@ const RoomScreen = () => {
               {props.currentMessage.replyMessage.image ? (
                 <Image
                   source={{ uri: props.currentMessage.replyMessage.image }}
-                  style={{ height: 40, width: 40 }}
+                  style={styles.replyImageStyles}
                 />
               ) : (
                 <Text>{props.currentMessage.replyMessage.text}</Text>
@@ -236,7 +236,7 @@ const RoomScreen = () => {
     }
   }, [focused, messages]);
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#ECE5DD" }}>
+    <SafeAreaView style={styles.container}>
       <GiftedChat
         messages={messages}
         onSend={(messages) => onSend(messages)}

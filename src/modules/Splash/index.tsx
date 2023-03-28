@@ -5,6 +5,7 @@ import * as Font from "expo-font";
 import { useIsFocused, useNavigation } from "@react-navigation/native";
 import SVGImage from "../../components/SVG";
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { styles } from "./styles";
 
 export default function Splash() {
   const { navigate } = useNavigation();
@@ -31,14 +32,7 @@ export default function Splash() {
     }
   }, [focused]);
   return (
-    <View
-      style={{
-        flex: 1,
-        alignItems: "center",
-        justifyContent: "center",
-        backgroundColor: "#99dfff",
-      }}
-    >
+    <View style={styles.container}>
       <SVGImage type="Logo" size={300} />
     </View>
   );

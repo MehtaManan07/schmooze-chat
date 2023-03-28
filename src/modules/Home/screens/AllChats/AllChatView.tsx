@@ -48,7 +48,7 @@ const AllChatView = ({
       <View style={styles.container}>
         <FlatList
           data={threads}
-          style={{ paddingHorizontal: 8 }}
+          style={styles.flatListStyles}
           keyExtractor={(item) => item._id}
           ItemSeparatorComponent={() => <Divider />}
           renderItem={({ item }) => (
@@ -70,7 +70,7 @@ const AllChatView = ({
                 titleNumberOfLines={1}
                 titleStyle={styles.listTitle}
                 right={() => (
-                  <Text style={{ marginTop: 28, color: "gray" }}>
+                  <Text style={styles.timeStyles}>
                     {item.latestMessage?.localTime
                       .toDate()
                       .toLocaleTimeString([], {

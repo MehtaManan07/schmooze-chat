@@ -1,6 +1,7 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#ECE5DD" },
   inputContainer: {
     flexDirection: "column-reverse",
     paddingBottom: 1,
@@ -12,7 +13,7 @@ export const styles = StyleSheet.create({
     padding: 8,
     paddingBottom: 0,
     opacity: 0.4,
-    backgroundColor: '#d5d5d5'
+    backgroundColor: "#d5d5d5",
   },
   replyMessageDivider: {
     borderBottomWidth: 1,
@@ -23,4 +24,5 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  replyImageStyles: { height: 40, width: 40 },
 });

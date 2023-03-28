@@ -19,4 +19,6 @@ export const styles = StyleSheet.create({
     bottom: 0,
     backgroundColor: "#D6E1FD",
   },
+  flatListStyles: { paddingHorizontal: 8 },
+  timeStyles: { marginTop: 28, color: "gray" }
 });
